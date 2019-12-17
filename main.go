@@ -314,6 +314,10 @@ func DeleteEmployeeEndpoint(response http.ResponseWriter, request *http.Request)
 	response.Write([]byte("Employee deleted successfully."))
 }
 
+var headers = handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})
+var methods = handlers.AllowedMethods([]string{"GET", "PUT", "POST", "DELETE", "OPTIONS", "HEAD"})
+var origins = handlers.AllowedOrigins([]string{"*"})
+
 // DefineRoute : collection of all routes.
 func DefineRoute() {
 	fmt.Println("Starting the application...")
@@ -322,13 +326,10 @@ func DefineRoute() {
 	router.HandleFunc("/employee/{id}", GetEmployeeEndpoint).Methods("GET")
 	router.HandleFunc("/employee/{id}", UpdateEmployeeEndpoint).Methods("PUT")
 	router.HandleFunc("/employee/{id}", DeleteEmployeeEndpoint).Methods("DELETE")
-	headers := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})
-	methods := handlers.AllowedMethods([]string{"GET", "PUT", "POST", "DELETE", "OPTIONS", "HEAD"})
-	origins := handlers.AllowedOrigins([]string{"*"})
-	http.ListenAndServe(":12345", handlers.CORS(headers, methods, origins)(router))
 }
 
 // The main function.
 func main() {
 	DefineRoute()
+	http.ListenAndServe(":12345", handlers.CORS(headers, methods, origins)(router))
 }
