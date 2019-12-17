@@ -1,0 +1,189 @@
+{
+  "consumes": [
+    "application/json",
+    "application/xml"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "the purpose of this application is to provide an application\nthat is using plain go code to define an API\n\nThis should demonstrate all the possible comment annotations\nthat are available to turn go code into a fully compliant swagger 2.0 spec",
+    "title": "Petstore API."
+  },
+  "host": "localhost:12345",
+  "paths": {
+    "/employee/{id}": {
+      "get": {
+        "description": "Set response headers.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Get specific employee record.",
+        "operationId": "GetEmployeeEndpoint",
+        "parameters": [
+          {
+            "description": "primitive id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "employee response"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "500": {
+            "description": "internal server error"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        }
+      },
+      "put": {
+        "description": "Set response headers.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Update specific employee record.",
+        "operationId": "UpdateEmployeeEndpoint",
+        "parameters": [
+          {
+            "description": "primitive id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "The employee to create.",
+            "name": "employee",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "firstname",
+                "lastname",
+                "empid",
+                "salary",
+                "practice"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "employee response"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        }
+      },
+      "delete": {
+        "description": "Set response headers.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Delete specific employee record.",
+        "operationId": "UpdateEmployeeEndpoint",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "primitive id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "employee response"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    },
+    "/employees": {
+      "get": {
+        "description": "Set response headers.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Get specific employee record.",
+        "operationId": "GetEmployeesEndpoint",
+        "responses": {
+          "200": {
+            "description": "employee response"
+          },
+          "500": {
+            "description": "internal server error"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Creates an employee record.",
+        "operationId": "CreateEmployeeEndpoint",
+        "parameters": [
+          {
+            "description": "The employee to create.",
+            "name": "employee",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "firstname",
+                "lastname",
+                "empid",
+                "salary",
+                "practice"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "employee response"
+          },
+          "500": {
+            "description": "internal server error"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    }
+  }
+}
